@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Activity, AlertCircle, Info, StopCircle } from "lucide-react-native";
+import { Activity, AlertCircle, Info, Settings, StopCircle } from "lucide-react-native";
 
 export default function AppLayout() {
   return (
@@ -46,6 +46,13 @@ export default function AppLayout() {
         options={{
           title: "Registre",
           tabBarIcon: ({ color, size }) => <Info size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Paramètres",
+          tabBarIcon: ({ color, size }) => <Settings size={size} color={color} />,
         }}
       />
     </Tabs>

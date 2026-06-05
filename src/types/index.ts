@@ -86,14 +86,50 @@ export interface StopCause {
   category_code: StopCategory
   label_fr: string
   display_order: number
+  expected_duration_s: number | null
+}
+
+export interface ShiftConfig {
+  version: number
+  factory_tz: string
+  morning: ShiftWindow
+  afternoon: ShiftWindow
+  night: ShiftWindow | null
+  lunch_gap: ShiftWindow
+  working_days: number[]
+}
+
+export interface ShiftWindow {
+  start: string
+  end: string
+}
+
+export interface AppSettings {
+  id: number
+  shift_config: ShiftConfig
+  updated_by: string | null
+  updated_email: string | null
+  updated_at: string
+}
+
+export interface Holiday {
+  id: number
+  day: string
+  reason: string | null
+  created_by: string | null
+  created_at: string
+  is_deleted: boolean
 }
 
 export interface KpiDailyRow {
   date: string
-  trs: number
+  trs: number | null
   mtbf_h: number | null
   mttr_min: number | null
   nb_stops: number
   downtime_s: number
+  mtta_s: number | null
+  mtta_sample_n: number | null
+  mtta_eligible_n: number | null
   updated_at: string
 }

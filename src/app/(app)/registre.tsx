@@ -1,4 +1,8 @@
 import ConnectionBadge from "@/components/ConnectionBadge";
+import MtbfTile from "@/components/MtbfTile";
+import MttrTile from "@/components/MttrTile";
+import MttaTile from "@/components/MttaTile";
+import MttaTrendChart from "@/components/MttaTrendChart";
 import { useInterventions } from "@/hooks/useInterventions";
 import { useOpenInterventions } from "@/hooks/useOpenInterventions";
 import type { InterventionRow } from "@/types";
@@ -33,14 +37,30 @@ export default function RegistreScreen() {
       >
         <View style={styles.headerRow}>
           <View>
-            <Text style={styles.title}>Registre</Text>
-            <Text style={styles.subtitle}>Interventions maintenance</Text>
+            <Text style={styles.title}>Registre des pannes</Text>
+            <Text style={styles.subtitle}>Triage et historique des interventions</Text>
           </View>
           <ConnectionBadge />
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Interventions en cours</Text>
+          <Text style={styles.sectionTitle}>Indicateurs maintenance</Text>
+          <Text style={styles.sectionHint}>
+            Suivi journalier : fiabilité (MTBF), réparation (MTTR) et réactivité (MTTA).
+          </Text>
+          <View style={styles.kpiRow}>
+            <MtbfTile />
+            <MttrTile />
+          </View>
+          <View style={styles.kpiRow}>
+            <MttaTile />
+          </View>
+        </View>
+
+        <MttaTrendChart days={30} />
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>En attente d'intervention</Text>
           <Text style={styles.sectionHint}>{open.count} ouverte(s)</Text>
           {open.items.length === 0 ? (
             <Text style={styles.emptyText}>Aucune intervention en cours.</Text>
@@ -64,7 +84,8 @@ export default function RegistreScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Interventions clôturées</Text>
+          <Text style={styles.sectionTitle}>Interventions terminées</Text>
+          <Text style={styles.sectionHint}>Registre chronologique des clôtures maintenance.</Text>
           {closed.items.length === 0 ? (
             <Text style={styles.emptyText}>Aucune intervention clôturée.</Text>
           ) : (
@@ -96,17 +117,16 @@ export default function RegistreScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: "#090d16" },
   container: { flex: 1, backgroundColor: "#090d16" },
-  content: { padding: 16, paddingBottom: 24 },
+  content: { padding: 16, paddingBottom: 24, gap: 16 },
   headerRow: {
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-between",
     gap: 12,
-    marginBottom: 12,
   },
   title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
   subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
-  section: { marginTop: 14 },
+  section: { gap: 6 },
   sectionTitle: {
     color: "#94a3b8",
     fontSize: 13,
@@ -114,9 +134,10 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.5,
   },
-  sectionHint: { color: "#64748b", fontSize: 12, marginTop: 4 },
-  emptyText: { color: "#64748b", fontSize: 13, marginTop: 10 },
-  list: { gap: 10, marginTop: 10 },
+  sectionHint: { color: "#64748b", fontSize: 12 },
+  kpiRow: { flexDirection: "row", gap: 10, marginTop: 8 },
+  emptyText: { color: "#64748b", fontSize: 13, marginTop: 4 },
+  list: { gap: 10, marginTop: 8 },
   item: {
     backgroundColor: "rgba(30, 41, 59, 0.4)",
     borderRadius: 12,
