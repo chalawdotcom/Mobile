@@ -80,10 +80,10 @@ export default function KioskScreen() {
 
   const timerColor =
     phase === "critical"
-      ? "#fb7185"
+      ? "#e11d48"
       : phase === "warning"
-        ? "#fbbf24"
-        : "#34d399";
+        ? "#f59e0b"
+        : "#10b981";
 
   return (
     <SafeAreaView style={styles.safe} edges={["top", "left", "right"]}>
@@ -119,14 +119,14 @@ export default function KioskScreen() {
 
             {activeStop.cause_category === "urgence" ? (
               <View style={styles.noticeRow}>
-                <AlertTriangle size={18} color="#fb7185" />
+                <AlertTriangle size={18} color="#e11d48" />
                 <Text style={styles.noticeText}>
                   Arrêt d'urgence : cause renseignée automatiquement.
                 </Text>
               </View>
             ) : activeStop.cause_label ? (
               <View style={styles.noticeRow}>
-                <CheckCircle2 size={18} color="#34d399" />
+                <CheckCircle2 size={18} color="#10b981" />
                 <Text style={styles.noticeText}>
                   Cause enregistrée : {activeStop.cause_label}
                 </Text>
@@ -144,7 +144,7 @@ export default function KioskScreen() {
 
             {causeSaved && (
               <View style={styles.savedRow}>
-                <CheckCircle2 size={18} color="#34d399" />
+                <CheckCircle2 size={18} color="#10b981" />
                 <Text style={styles.savedText}>Cause enregistrée.</Text>
               </View>
             )}
@@ -183,10 +183,10 @@ export default function KioskScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
   container: {
     flex: 1,
-    backgroundColor: "#090d16",
+    backgroundColor: "#f1f5f9",
     padding: 16,
     paddingBottom: 28,
     gap: 14,
@@ -197,38 +197,38 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
   noStopCard: {
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 14,
     gap: 4,
   },
-  noStopTitle: { color: "#f8fafc", fontSize: 14, fontWeight: "700" },
-  noStopText: { color: "#94a3b8", fontSize: 12, fontWeight: "500" },
+  noStopTitle: { color: "#1e293b", fontSize: 14, fontWeight: "700" },
+  noStopText: { color: "#64748b", fontSize: 12, fontWeight: "500" },
   stopCard: {
     flex: 1,
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 14,
     gap: 12,
   },
   stopTop: { gap: 2 },
   timerRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   timerText: { fontSize: 20, fontWeight: "800", fontVariant: ["tabular-nums"] },
-  stopHint: { color: "#64748b", fontSize: 12, fontWeight: "500" },
+  stopHint: { color: "#94a3b8", fontSize: 12, fontWeight: "500" },
   noticeRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  noticeText: { color: "#cbd5e1", fontSize: 13, fontWeight: "600", flex: 1 },
+  noticeText: { color: "#334155", fontSize: 13, fontWeight: "600", flex: 1 },
   pickerContainer: { flex: 1, minHeight: 0 },
   savedRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  savedText: { color: "#34d399", fontSize: 13, fontWeight: "700" },
+  savedText: { color: "#10b981", fontSize: 13, fontWeight: "700" },
   footer: { marginTop: 4, gap: 10 },
-  userText: { color: "#64748b", fontSize: 12 },
+  userText: { color: "#94a3b8", fontSize: 12 },
   signOutBtn: {
     height: 46,
     borderRadius: 10,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   signOutBtnPressed: { opacity: 0.9 },
-  signOutBtnDisabled: { backgroundColor: "#1e293b" },
+  signOutBtnDisabled: { backgroundColor: "#94a3b8" },
   signOutText: { color: "#ffffff", fontSize: 14, fontWeight: "700" },
   signOutRow: { flexDirection: "row", alignItems: "center", gap: 10 },
 });

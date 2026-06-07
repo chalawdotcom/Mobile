@@ -22,7 +22,7 @@ export default function TrsGauge({ value, size = 120, strokeWidth = 10 }: TrsGau
     )
   }
 
-  const color = getTrsBandColor(value, 'dark')
+  const color = getTrsBandColor(value, 'light')
 
   return (
     <RadialGauge
@@ -44,21 +44,21 @@ const styles = StyleSheet.create({
   },
   nullRing: {
     borderWidth: 10,
-    borderColor: 'rgba(255,255,255,0.08)',
+    borderColor: 'rgba(0,0,0,0.06)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   nullValue: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontWeight: '700',
   },
   nullUnit: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontWeight: '500',
     marginTop: -2,
   },
   label: {
-    color: '#94a3b8',
+    color: '#64748b',
     fontSize: 12,
     fontWeight: '500',
     marginTop: 6,

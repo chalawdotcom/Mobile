@@ -67,7 +67,7 @@ export default function HistoriqueScreen() {
                 pressed && styles.refreshBtnPressed,
               ]}
             >
-              <RotateCcw size={16} color="#94a3b8" />
+              <RotateCcw size={16} color="#64748b" />
               <Text style={styles.refreshText}>Actualiser</Text>
             </Pressable>
           </View>
@@ -134,8 +134,8 @@ export default function HistoriqueScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
-  container: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
+  container: { flex: 1, backgroundColor: "#f1f5f9" },
   content: { padding: 16, paddingBottom: 24 },
   headerRow: {
     flexDirection: "row",
@@ -145,56 +145,56 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   headerRight: { alignItems: "flex-end", gap: 10 },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
   refreshBtn: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    borderColor: "rgba(0,0,0,0.08)",
+    backgroundColor: "#ffffff",
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
   refreshBtnPressed: { opacity: 0.8 },
-  refreshText: { color: "#94a3b8", fontSize: 12, fontWeight: "600" },
+  refreshText: { color: "#64748b", fontSize: 12, fontWeight: "600" },
   activeStopCard: {
-    backgroundColor: "rgba(225, 29, 72, 0.10)",
+    backgroundColor: "rgba(225, 29, 72, 0.06)",
     borderWidth: 1,
-    borderColor: "rgba(225, 29, 72, 0.25)",
+    borderColor: "rgba(225, 29, 72, 0.18)",
     borderRadius: 12,
     padding: 12,
     marginBottom: 12,
   },
   activeStopTitle: {
-    color: "#fb7185",
+    color: "#e11d48",
     fontSize: 14,
     fontWeight: "800",
     marginBottom: 6,
   },
-  activeStopLine: { color: "#f8fafc", fontSize: 13, fontWeight: "500" },
+  activeStopLine: { color: "#1e293b", fontSize: 13, fontWeight: "500" },
   loadingRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     paddingVertical: 10,
   },
-  loadingText: { color: "#64748b", fontSize: 13 },
-  errorText: { color: "#fca5a5", fontSize: 13, marginBottom: 10 },
+  loadingText: { color: "#94a3b8", fontSize: 13 },
+  errorText: { color: "#dc2626", fontSize: 13, marginBottom: 10 },
   list: { gap: 10 },
   item: {
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 12,
     gap: 4,
   },
   itemOpen: {
-    borderColor: "rgba(245, 158, 11, 0.25)",
-    backgroundColor: "rgba(245, 158, 11, 0.08)",
+    borderColor: "rgba(245, 158, 11, 0.2)",
+    backgroundColor: "rgba(245, 158, 11, 0.04)",
   },
   itemTop: {
     flexDirection: "row",
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
-  itemTitle: { color: "#f8fafc", fontSize: 14, fontWeight: "700" },
+  itemTitle: { color: "#1e293b", fontSize: 14, fontWeight: "700" },
   itemBadge: {
     fontSize: 10,
     fontWeight: "800",
@@ -213,14 +213,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   badgeOpen: {
-    color: "#fbbf24",
+    color: "#d97706",
     borderWidth: 1,
-    borderColor: "rgba(245,158,11,0.35)",
+    borderColor: "rgba(245,158,11,0.3)",
   },
   badgeClosed: {
-    color: "#94a3b8",
+    color: "#64748b",
     borderWidth: 1,
     borderColor: "rgba(148,163,184,0.25)",
   },
-  itemLine: { color: "#cbd5e1", fontSize: 13, fontWeight: "500" },
+  itemLine: { color: "#475569", fontSize: 13, fontWeight: "500" },
 });

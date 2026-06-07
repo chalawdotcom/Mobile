@@ -95,25 +95,25 @@ export default function MttaTrendChart({ days = 30 }: MttaTrendChartProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 14,
     gap: 10,
   },
   header: { gap: 4 },
   headerLabel: {
-    color: "#94a3b8",
+    color: "#64748b",
     fontSize: 11,
     fontWeight: "800",
     textTransform: "uppercase",
     letterSpacing: 0.4,
   },
-  headerTitle: { color: "#64748b", fontSize: 12 },
-  legend: { color: "#64748b", fontSize: 10 },
+  headerTitle: { color: "#94a3b8", fontSize: 12 },
+  legend: { color: "#94a3b8", fontSize: 10 },
   chartContainer: { minHeight: 140 },
-  emptyText: { color: "#64748b", fontSize: 13, textAlign: "center", paddingVertical: 24 },
+  emptyText: { color: "#94a3b8", fontSize: 13, textAlign: "center", paddingVertical: 24 },
   chart: { flexDirection: "row", gap: 4 },
   barsContainer: {
     flex: 1,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     minHeight: 4,
   },
   barLabel: {
-    color: "#64748b",
+    color: "#94a3b8",
     fontSize: 8,
     transform: [{ rotate: "-45deg" }],
   },
@@ -147,5 +147,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 4,
   },
-  yLabel: { color: "#64748b", fontSize: 9, textAlign: "right" },
+  yLabel: { color: "#94a3b8", fontSize: 9, textAlign: "right" },
 });

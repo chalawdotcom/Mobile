@@ -21,10 +21,7 @@ export default function AlertesScreen() {
 
   const canAcknowledge = role === "admin_maintenance";
 
-  const items = useMemo(() => {
-    // Ensure newest-first; store already keeps it that way.
-    return alerts;
-  }, [alerts]);
+  const items = useMemo(() => alerts, [alerts]);
 
   async function handleAcknowledge(id: number) {
     if (!canAcknowledge || !user) return;
@@ -108,10 +105,10 @@ export default function AlertesScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
   container: {
     flex: 1,
-    backgroundColor: "#090d16",
+    backgroundColor: "#f1f5f9",
     paddingHorizontal: 16,
     paddingBottom: 12,
   },
@@ -123,22 +120,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
   listContent: { gap: 10, paddingBottom: 20 },
   empty: { paddingVertical: 24, alignItems: "center" },
-  emptyText: { color: "#64748b", fontSize: 14, fontWeight: "500" },
+  emptyText: { color: "#94a3b8", fontSize: 14, fontWeight: "500" },
   ackingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(9, 13, 22, 0.75)",
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
   },
-  ackingText: { color: "#94a3b8", fontSize: 14, fontWeight: "600" },
+  ackingText: { color: "#64748b", fontSize: 14, fontWeight: "600" },
   hintRow: {
     paddingTop: 10,
     alignItems: "center",
   },
-  hintText: { color: "#64748b", fontSize: 12 },
+  hintText: { color: "#94a3b8", fontSize: 12 },
 });

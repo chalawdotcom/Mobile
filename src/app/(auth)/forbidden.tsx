@@ -31,7 +31,7 @@ export default function ForbiddenScreen() {
     <SafeAreaView style={styles.safe} edges={["top", "left", "right"]}>
       <View style={styles.container}>
         <View style={styles.iconContainer}>
-          <ShieldAlert size={32} color="#fb7185" />
+          <ShieldAlert size={32} color="#e11d48" />
         </View>
 
         <Text style={styles.title}>Accès non autorisé</Text>
@@ -66,7 +66,7 @@ export default function ForbiddenScreen() {
           >
             {submitting ? (
               <View style={styles.signOutRow}>
-                <ActivityIndicator size="small" color="#94a3b8" />
+                <ActivityIndicator size="small" color="#64748b" />
                 <Text style={styles.signOutText}>Déconnexion…</Text>
               </View>
             ) : (
@@ -80,10 +80,10 @@ export default function ForbiddenScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
   container: {
     flex: 1,
-    backgroundColor: "#090d16",
+    backgroundColor: "#f1f5f9",
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
@@ -93,18 +93,18 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 16,
-    backgroundColor: "rgba(251, 113, 133, 0.12)",
+    backgroundColor: "rgba(225, 29, 72, 0.08)",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    color: "#f8fafc",
+    color: "#1e293b",
     fontSize: 20,
     fontWeight: "700",
     textAlign: "center",
   },
   description: {
-    color: "#94a3b8",
+    color: "#64748b",
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
     height: 46,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
-    backgroundColor: "transparent",
+    borderColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
   },
   signOutBtnPressed: { opacity: 0.85 },
-  signOutBtnDisabled: { backgroundColor: "#1e293b" },
-  signOutText: { color: "#94a3b8", fontSize: 14, fontWeight: "600" },
+  signOutBtnDisabled: { backgroundColor: "#f1f5f9" },
+  signOutText: { color: "#64748b", fontSize: 14, fontWeight: "600" },
   signOutRow: { flexDirection: "row", alignItems: "center", gap: 10 },
 });

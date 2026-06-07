@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ConnectionBadge from "@/components/ConnectionBadge";
@@ -25,11 +24,8 @@ export default function SettingsScreen() {
         </View>
 
         <ShiftScheduleForm />
-
         <HolidayEditor />
-
         <CauseBudgetEditor />
-
         <ShiftQualityForm />
       </ScrollView>
     </SafeAreaView>
@@ -37,8 +33,8 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
-  container: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
+  container: { flex: 1, backgroundColor: "#f1f5f9" },
   content: { padding: 16, paddingBottom: 28, gap: 16 },
   headerRow: {
     flexDirection: "row",
@@ -46,6 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
 });

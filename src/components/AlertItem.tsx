@@ -48,7 +48,6 @@ export default function AlertItem({ alert, showAcknowledge = false, onAcknowledg
 
   return (
     <View style={[styles.container, alert.acknowledged && styles.containerAcknowledged]}>
-      {/* Left: severity icon + badge */}
       <View style={styles.leftCol}>
         <Icon size={18} color={color} />
         <View style={[styles.badge, { backgroundColor: color }]}>
@@ -56,7 +55,6 @@ export default function AlertItem({ alert, showAcknowledge = false, onAcknowledg
         </View>
       </View>
 
-      {/* Center: message + timestamp */}
       <View style={styles.centerCol}>
         <Text style={styles.messageText} numberOfLines={2}>
           {alert.message}
@@ -64,7 +62,6 @@ export default function AlertItem({ alert, showAcknowledge = false, onAcknowledg
         <Text style={styles.timestampText}>{formatTime(alert.ts)}</Text>
       </View>
 
-      {/* Right: acknowledge button */}
       {showAcknowledge && !alert.acknowledged && onAcknowledge && (
         <Pressable
           style={({ pressed }) => [
@@ -80,7 +77,6 @@ export default function AlertItem({ alert, showAcknowledge = false, onAcknowledg
         </Pressable>
       )}
 
-      {/* Acknowledged indicator */}
       {alert.acknowledged && (
         <View style={styles.ackIndicator}>
           <Text style={styles.ackIndicatorText}>✓</Text>
@@ -94,10 +90,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
+    borderColor: 'rgba(0,0,0,0.06)',
     paddingHorizontal: 12,
     paddingVertical: 10,
     gap: 10,
@@ -127,13 +123,13 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   messageText: {
-    color: '#f8fafc',
+    color: '#1e293b',
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 18,
   },
   timestampText: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontSize: 12,
     fontWeight: '500',
     fontVariant: ['tabular-nums'],
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   ackButtonPressed: {
-    backgroundColor: 'rgba(59, 91, 255, 0.2)',
+    backgroundColor: 'rgba(59, 91, 255, 0.1)',
   },
   ackButtonText: {
     color: '#3b5bff',
@@ -161,7 +157,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: 'rgba(16, 185, 129, 0.15)',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
   },

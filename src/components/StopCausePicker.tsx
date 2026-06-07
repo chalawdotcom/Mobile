@@ -50,7 +50,6 @@ export default function StopCausePicker({ onSubmit, recentForUserId }: StopCause
 
   return (
     <View style={styles.container}>
-      {/* Recent causes section */}
       {recentCauses.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Causes récentes</Text>
@@ -85,7 +84,6 @@ export default function StopCausePicker({ onSubmit, recentForUserId }: StopCause
         </View>
       )}
 
-      {/* Category pills */}
       <View style={styles.pillRow}>
         {OPERATOR_PICKER_CATEGORIES.map((cat) => {
           const isActive = cat === selectedCategory
@@ -117,7 +115,6 @@ export default function StopCausePicker({ onSubmit, recentForUserId }: StopCause
         })}
       </View>
 
-      {/* Causes list */}
       {loadingCauses ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="small" color="#3b5bff" />
@@ -152,7 +149,6 @@ export default function StopCausePicker({ onSubmit, recentForUserId }: StopCause
         </ScrollView>
       )}
 
-      {/* Submitting overlay */}
       {submitting && (
         <View style={styles.submittingOverlay}>
           <ActivityIndicator size="large" color="#3b5bff" />
@@ -171,7 +167,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    color: '#94a3b8',
+    color: '#64748b',
     fontSize: 13,
     fontWeight: '600',
     textTransform: 'uppercase',
@@ -187,7 +183,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
     borderWidth: 1.5,
     borderRadius: 10,
-    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+    backgroundColor: '#f8fafc',
     paddingHorizontal: 10,
     paddingVertical: 8,
     alignItems: 'center',
@@ -200,7 +196,7 @@ const styles = StyleSheet.create({
   },
   recentCategory: {
     fontSize: 10,
-    color: '#64748b',
+    color: '#94a3b8',
     fontWeight: '500',
     marginTop: 2,
     textAlign: 'center',
@@ -232,7 +228,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   loadingText: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontSize: 13,
   },
   scrollView: {
@@ -243,40 +239,40 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   emptyText: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontSize: 14,
     textAlign: 'center',
     paddingVertical: 24,
   },
   causeItem: {
     minHeight: 48,
-    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
+    borderColor: 'rgba(0,0,0,0.06)',
     paddingHorizontal: 16,
     paddingVertical: 12,
     justifyContent: 'center',
   },
   causeItemPressed: {
-    backgroundColor: 'rgba(59, 91, 255, 0.15)',
+    backgroundColor: 'rgba(59, 91, 255, 0.08)',
     borderColor: '#3b5bff',
   },
   causeLabel: {
-    color: '#f8fafc',
+    color: '#1e293b',
     fontSize: 15,
     fontWeight: '500',
   },
   submittingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(9, 13, 22, 0.75)',
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
     gap: 12,
   },
   submittingText: {
-    color: '#94a3b8',
+    color: '#64748b',
     fontSize: 14,
     fontWeight: '500',
   },

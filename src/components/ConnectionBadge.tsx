@@ -1,43 +1,35 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { useMachineStore } from '@/stores/machineStore'
+import { useMachineStore } from "@/stores/machineStore";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ConnectionBadge() {
-  const connected = useMachineStore((s) => s.realtimeConnected)
-
-  const dotColor = connected ? '#10b981' : '#e11d48'
-  const label = connected ? 'Connecté' : 'Hors ligne'
-  const textColor = connected ? '#10b981' : '#e11d48'
+  const connected = useMachineStore((s) => s.realtimeConnected);
 
   return (
     <View style={styles.badge}>
-      <View style={[styles.dot, { backgroundColor: dotColor }]} />
-      <Text style={[styles.label, { color: textColor }]}>{label}</Text>
+      <View
+        style={[styles.dot, connected ? styles.dotConnected : styles.dotDisconnected]}
+      />
+      <Text style={styles.text}>
+        {connected ? "Connecté" : "Hors ligne"}
+      </Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 28,
-    backgroundColor: 'rgba(30, 41, 59, 0.5)',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
-    paddingHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
-    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 999,
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.06)",
   },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  label: {
-    fontSize: 12,
-    fontWeight: '600',
-    letterSpacing: 0.2,
-  },
-})
+  dot: { width: 7, height: 7, borderRadius: 999 },
+  dotConnected: { backgroundColor: "#10b981" },
+  dotDisconnected: { backgroundColor: "#e11d48" },
+  text: { color: "#64748b", fontSize: 11, fontWeight: "600" },
+});

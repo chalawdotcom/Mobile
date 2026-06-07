@@ -25,10 +25,10 @@ export default function MttrTile() {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 12,
     gap: 8,
     minHeight: 100,
@@ -36,19 +36,19 @@ const styles = StyleSheet.create({
   },
   header: { gap: 2 },
   label: {
-    color: "#94a3b8",
+    color: "#64748b",
     fontSize: 11,
     fontWeight: "800",
     letterSpacing: 0.5,
     textTransform: "uppercase",
   },
-  subtitle: { color: "#64748b", fontSize: 11 },
+  subtitle: { color: "#94a3b8", fontSize: 11 },
   valueContainer: { gap: 2 },
   value: {
-    color: "#f8fafc",
+    color: "#1e293b",
     fontSize: 28,
     fontWeight: "700",
     fontVariant: ["tabular-nums"],
   },
-  unit: { color: "#64748b", fontSize: 11 },
+  unit: { color: "#94a3b8", fontSize: 11 },
 });

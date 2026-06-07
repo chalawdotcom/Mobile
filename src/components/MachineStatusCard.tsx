@@ -1,124 +1,68 @@
-import React, { useEffect, useRef } from 'react'
-import { Animated, StyleSheet, View } from 'react-native'
-import { Activity, StopCircle, AlertTriangle, HelpCircle } from 'lucide-react-native'
-import { useMachineStore } from '@/stores/machineStore'
-import { STATE_LABEL, STATE_COLOR_LIGHT } from '@/design/theme'
-import type { MachineStateKey } from '@/design/theme'
+import { useEffect, useRef } from "react";
+import { Animated, StyleSheet, Text, View } from "react-native";
+import { Zap, Pause, AlertTriangle, HelpCircle } from "lucide-react-native";
+import { useMachineStore } from "@/stores/machineStore";
+import { STATE_LABEL, STATE_COLOR_LIGHT, type MachineStateKey } from "@/design/theme";
 
-const STATE_ICON: Record<MachineStateKey, React.ComponentType<{ size: number; color: string }>> = {
-  running: Activity,
-  stopped: StopCircle,
-  emergency: AlertTriangle,
-  unknown: HelpCircle,
-}
+const ICON_MAP: Record<MachineStateKey, React.ReactNode> = {
+  running: <Zap size={18} color={STATE_COLOR_LIGHT.running} />,
+  stopped: <Pause size={18} color={STATE_COLOR_LIGHT.stopped} />,
+  emergency: <AlertTriangle size={18} color={STATE_COLOR_LIGHT.emergency} />,
+  unknown: <HelpCircle size={18} color={STATE_COLOR_LIGHT.unknown} />,
+};
 
 export default function MachineStatusCard() {
-  const state = useMachineStore((s) => s.state)
-  const cadencePpm = useMachineStore((s) => s.cadencePpm)
-
-  const pulseAnim = useRef(new Animated.Value(1)).current
-
-  const color = STATE_COLOR_LIGHT[state] ?? STATE_COLOR_LIGHT.unknown
-  const label = STATE_LABEL[state] ?? STATE_LABEL.unknown
-  const Icon = STATE_ICON[state] ?? STATE_ICON.unknown
+  const state = useMachineStore((s) => s.state);
+  const cadencePpm = useMachineStore((s) => s.cadencePpm);
+  const pulseAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (state === 'emergency') {
-      const animation = Animated.loop(
-        Animated.sequence([
-          Animated.timing(pulseAnim, {
-            toValue: 0.4,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-          Animated.timing(pulseAnim, {
-            toValue: 1,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-        ])
-      )
-      animation.start()
-      return () => animation.stop()
-    } else {
-      pulseAnim.setValue(1)
+    if (state !== "emergency") {
+      pulseAnim.setValue(1);
+      return;
     }
-  }, [state, pulseAnim])
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 0.4, duration: 800, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 800, useNativeDriver: true }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [state, pulseAnim]);
+
+  const dotColor = STATE_COLOR_LIGHT[state] ?? STATE_COLOR_LIGHT.unknown;
 
   return (
-    <Animated.View
-      style={[
-        styles.card,
-        { borderLeftColor: color, opacity: state === 'emergency' ? pulseAnim : 1 },
-      ]}
-    >
-      {/* Header row */}
-      <View style={styles.row}>
-        {/* Colored dot */}
-        <View style={[styles.dot, { backgroundColor: color }]} />
-
-        {/* Icon */}
-        <Icon size={22} color={color} />
-
-        {/* State label */}
-        <Animated.Text style={[styles.stateLabel, { color }]}>{label}</Animated.Text>
+    <View style={styles.card}>
+      <View style={styles.top}>
+        <Animated.View style={[styles.dot, { backgroundColor: dotColor, opacity: state === "emergency" ? pulseAnim : 1 }]} />
+        {ICON_MAP[state] ?? ICON_MAP.unknown}
+        <Text style={styles.state}>{STATE_LABEL[state] ?? STATE_LABEL.unknown}</Text>
       </View>
-
-      {/* Cadence info */}
-      <View style={styles.cadenceRow}>
-        <Animated.Text style={styles.cadenceLabel}>Cadence :</Animated.Text>
-        <Animated.Text style={[styles.cadenceValue, { color }]}>
-          {cadencePpm} <Animated.Text style={styles.cadenceUnit}>pl/min</Animated.Text>
-        </Animated.Text>
+      <View style={styles.bottom}>
+        <Text style={styles.cadence}>{cadencePpm}</Text>
+        <Text style={styles.unit}>plaques/min</Text>
       </View>
-    </Animated.View>
-  )
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
-    borderLeftWidth: 4,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    borderColor: "rgba(0,0,0,0.06)",
+    padding: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-  },
-  stateLabel: {
-    fontSize: 18,
-    fontWeight: '700',
-    letterSpacing: 0.3,
-  },
-  cadenceRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-    gap: 6,
-  },
-  cadenceLabel: {
-    color: '#94a3b8',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  cadenceValue: {
-    fontSize: 16,
-    fontWeight: '700',
-    fontVariant: ['tabular-nums'],
-  },
-  cadenceUnit: {
-    fontSize: 12,
-    fontWeight: '400',
-    color: '#64748b',
-  },
-})
+  top: { flexDirection: "row", alignItems: "center", gap: 8 },
+  dot: { width: 10, height: 10, borderRadius: 999 },
+  state: { color: "#1e293b", fontSize: 15, fontWeight: "700" },
+  bottom: { alignItems: "flex-end", gap: 2 },
+  cadence: { color: "#1e293b", fontSize: 22, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  unit: { color: "#94a3b8", fontSize: 11 },
+});

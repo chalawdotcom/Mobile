@@ -115,8 +115,8 @@ export default function RegistreScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
-  container: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
+  container: { flex: 1, backgroundColor: "#f1f5f9" },
   content: { padding: 16, paddingBottom: 24, gap: 16 },
   headerRow: {
     flexDirection: "row",
@@ -124,25 +124,25 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
   section: { gap: 6 },
   sectionTitle: {
-    color: "#94a3b8",
+    color: "#64748b",
     fontSize: 13,
     fontWeight: "700",
     textTransform: "uppercase",
     letterSpacing: 0.5,
   },
-  sectionHint: { color: "#64748b", fontSize: 12 },
+  sectionHint: { color: "#94a3b8", fontSize: 12 },
   kpiRow: { flexDirection: "row", gap: 10, marginTop: 8 },
-  emptyText: { color: "#64748b", fontSize: 13, marginTop: 4 },
+  emptyText: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
   list: { gap: 10, marginTop: 8 },
   item: {
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 12,
     gap: 4,
   },
@@ -152,9 +152,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
-  itemTitle: { color: "#f8fafc", fontSize: 14, fontWeight: "700" },
+  itemTitle: { color: "#1e293b", fontSize: 14, fontWeight: "700" },
   badge: {
-    color: "#94a3b8",
+    color: "#64748b",
     fontSize: 11,
     fontWeight: "800",
     letterSpacing: 0.4,
@@ -165,5 +165,5 @@ const styles = StyleSheet.create({
     borderColor: "rgba(148,163,184,0.25)",
     overflow: "hidden",
   },
-  itemLine: { color: "#cbd5e1", fontSize: 13, fontWeight: "500" },
+  itemLine: { color: "#475569", fontSize: 13, fontWeight: "500" },
 });

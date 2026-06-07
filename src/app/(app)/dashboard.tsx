@@ -89,22 +89,22 @@ export default function DashboardScreen() {
             label="MTBF"
             value={fmt1(today?.mtbf_h)}
             unit="h"
-            icon={<Activity size={18} color="#34d399" />}
-            color="#34d399"
+            icon={<Activity size={18} color="#10b981" />}
+            color="#10b981"
           />
           <KpiCard
             label="MTTR"
             value={today?.mttr_min != null ? Math.round(today.mttr_min) : null}
             unit="min"
-            icon={<Wrench size={18} color="#fbbf24" />}
-            color="#fbbf24"
+            icon={<Wrench size={18} color="#f59e0b" />}
+            color="#f59e0b"
           />
           <KpiCard
             label="Arrêts"
             value={today?.nb_stops ?? null}
             unit="/j"
-            icon={<Clock size={18} color="#94a3b8" />}
-            color="#f8fafc"
+            icon={<Clock size={18} color="#64748b" />}
+            color="#1e293b"
           />
           <KpiCard
             label="Alertes"
@@ -113,10 +113,10 @@ export default function DashboardScreen() {
             icon={
               <Activity
                 size={18}
-                color={unackedCount > 0 ? "#fb7185" : "#94a3b8"}
+                color={unackedCount > 0 ? "#e11d48" : "#64748b"}
               />
             }
-            color={unackedCount > 0 ? "#fb7185" : "#f8fafc"}
+            color={unackedCount > 0 ? "#e11d48" : "#1e293b"}
           />
         </View>
 
@@ -164,8 +164,8 @@ export default function DashboardScreen() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#090d16" },
-  container: { flex: 1, backgroundColor: "#090d16" },
+  safe: { flex: 1, backgroundColor: "#f1f5f9" },
+  container: { flex: 1, backgroundColor: "#f1f5f9" },
   content: { padding: 16, paddingBottom: 28, gap: 14 },
   headerRow: {
     flexDirection: "row",
@@ -173,22 +173,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  title: { color: "#f8fafc", fontSize: 22, fontWeight: "700" },
-  subtitle: { color: "#94a3b8", fontSize: 13, marginTop: 4 },
+  title: { color: "#1e293b", fontSize: 22, fontWeight: "700" },
+  subtitle: { color: "#64748b", fontSize: 13, marginTop: 4 },
   stopCard: {
-    backgroundColor: "rgba(245, 158, 11, 0.10)",
+    backgroundColor: "rgba(245, 158, 11, 0.08)",
     borderWidth: 1,
-    borderColor: "rgba(245, 158, 11, 0.25)",
+    borderColor: "rgba(245, 158, 11, 0.2)",
     borderRadius: 12,
     padding: 12,
   },
   stopTitle: {
-    color: "#fbbf24",
+    color: "#d97706",
     fontSize: 14,
     fontWeight: "800",
     marginBottom: 6,
   },
-  stopLine: { color: "#f8fafc", fontSize: 13, fontWeight: "500" },
+  stopLine: { color: "#1e293b", fontSize: 13, fontWeight: "500" },
   gaugesRow: { flexDirection: "row", justifyContent: "space-between", gap: 12 },
   kpisRow: {
     flexDirection: "row",
@@ -197,18 +197,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   linkCard: {
-    backgroundColor: "rgba(30, 41, 59, 0.4)",
+    backgroundColor: "#ffffff",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(0,0,0,0.06)",
     padding: 14,
     gap: 4,
   },
   linkCardPressed: { opacity: 0.85 },
-  linkTitle: { color: "#f8fafc", fontSize: 14, fontWeight: "700" },
-  linkSubtitle: { color: "#94a3b8", fontSize: 12, fontWeight: "500" },
+  linkTitle: { color: "#1e293b", fontSize: 14, fontWeight: "700" },
+  linkSubtitle: { color: "#64748b", fontSize: 12, fontWeight: "500" },
   footer: { marginTop: 4, gap: 10 },
-  userText: { color: "#64748b", fontSize: 12 },
+  userText: { color: "#94a3b8", fontSize: 12 },
   signOutBtn: {
     height: 46,
     borderRadius: 10,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   signOutBtnPressed: { opacity: 0.9 },
-  signOutBtnDisabled: { backgroundColor: "#1e293b" },
+  signOutBtnDisabled: { backgroundColor: "#94a3b8" },
   signOutText: { color: "#ffffff", fontSize: 14, fontWeight: "700" },
   signOutRow: { flexDirection: "row", alignItems: "center", gap: 10 },
 });

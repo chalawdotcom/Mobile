@@ -50,16 +50,14 @@ export default function RadialGauge({
   return (
     <View style={[styles.container, { width: size, height: size + 28 }]}>
       <Svg width={size} height={size}>
-        {/* Background ring */}
         <Circle
           cx={center}
           cy={center}
           r={radius}
-          stroke="rgba(255,255,255,0.08)"
+          stroke="rgba(0,0,0,0.06)"
           strokeWidth={strokeWidth}
           fill="none"
         />
-        {/* Progress arc */}
         <AnimatedCircle
           cx={center}
           cy={center}
@@ -75,7 +73,6 @@ export default function RadialGauge({
         />
       </Svg>
 
-      {/* Centered value */}
       <View style={[styles.valueContainer, { width: size, height: size }]}>
         <Animated.Text style={[styles.valueText, { color, fontSize: size * 0.22 }]}>
           {displayValue}
@@ -87,7 +84,6 @@ export default function RadialGauge({
         ) : null}
       </View>
 
-      {/* Label below */}
       <Animated.Text style={styles.labelText} numberOfLines={1}>
         {label}
       </Animated.Text>
@@ -117,7 +113,7 @@ const styles = StyleSheet.create({
     marginTop: -2,
   },
   labelText: {
-    color: '#94a3b8',
+    color: '#64748b',
     fontSize: 12,
     fontWeight: '500',
     marginTop: 6,

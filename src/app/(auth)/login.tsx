@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import {
   ActivityIndicator,
+  Image,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -11,8 +12,9 @@ import {
   View,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Factory } from 'lucide-react-native'
 import { useAuth } from '@/contexts/AuthContext'
+
+const logoImg = require('../../../assets/images/logo.jpeg')
 
 const LAST_EMAIL_KEY = 'medis.lastLoginEmail'
 
@@ -23,12 +25,9 @@ export default function LoginScreen() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Load last saved email on mount
   useEffect(() => {
     AsyncStorage.getItem(LAST_EMAIL_KEY).then((savedEmail) => {
-      if (savedEmail) {
-        setEmail(savedEmail)
-      }
+      if (savedEmail) setEmail(savedEmail)
     })
   }, [])
 
@@ -37,13 +36,12 @@ export default function LoginScreen() {
       setError('Veuillez remplir tous les champs.')
       return
     }
-
     setError(null)
     setSubmitting(true)
     try {
       await signIn(email.trim(), password)
       await AsyncStorage.setItem(LAST_EMAIL_KEY, email.trim())
-    } catch (err: any) {
+    } catch {
       setError('Identifiants invalides. Veuillez réessayer.')
       setSubmitting(false)
     }
@@ -61,7 +59,7 @@ export default function LoginScreen() {
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.logoContainer}>
-              <Factory size={40} color="#3b5bff" />
+              <Image source={logoImg} style={styles.logo} resizeMode="contain" />
             </View>
             <Text style={styles.title}>Médis Supervision</Text>
             <Text style={styles.subtitle}>Ligne de conditionnement EE233</Text>
@@ -75,7 +73,7 @@ export default function LoginScreen() {
                 value={email}
                 onChangeText={setEmail}
                 placeholder="prenom.nom@medis.tn"
-                placeholderTextColor="#64748b"
+                placeholderTextColor="#94a3b8"
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -90,7 +88,7 @@ export default function LoginScreen() {
                 value={password}
                 onChangeText={setPassword}
                 placeholder="••••••••"
-                placeholderTextColor="#64748b"
+                placeholderTextColor="#94a3b8"
                 secureTextEntry
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -136,7 +134,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   keyboardContainer: {
     flex: 1,
-    backgroundColor: '#090d16',
+    backgroundColor: '#f1f5f9',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -144,39 +142,46 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   card: {
-    backgroundColor: 'rgba(30, 41, 59, 0.4)',
+    backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 24,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderColor: 'rgba(0, 0, 0, 0.06)',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
     shadowRadius: 16,
-    elevation: 8,
+    elevation: 4,
   },
   header: {
     alignItems: 'center',
     marginBottom: 32,
   },
   logoContainer: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    backgroundColor: 'rgba(59, 91, 255, 0.15)',
+    width: 88,
+    height: 88,
+    borderRadius: 20,
+    backgroundColor: '#f8fafc',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.06)',
+  },
+  logo: {
+    width: 72,
+    height: 72,
   },
   title: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#f8fafc',
+    color: '#1e293b',
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 14,
-    color: '#94a3b8',
+    color: '#64748b',
     textAlign: 'center',
     marginTop: 4,
   },
@@ -189,43 +194,43 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#e2e8f0',
+    color: '#334155',
   },
   input: {
     height: 48,
-    borderRadius: 8,
-    backgroundColor: 'rgba(15, 23, 42, 0.6)',
+    borderRadius: 10,
+    backgroundColor: '#f8fafc',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: 'rgba(0, 0, 0, 0.12)',
     paddingHorizontal: 16,
     fontSize: 15,
-    color: '#f8fafc',
+    color: '#1e293b',
   },
   errorContainer: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)',
-    borderRadius: 8,
+    backgroundColor: 'rgba(239, 68, 68, 0.08)',
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: 'rgba(239, 68, 68, 0.2)',
     padding: 12,
   },
   errorText: {
-    color: '#fca5a5',
+    color: '#dc2626',
     fontSize: 13,
     textAlign: 'center',
   },
   button: {
     height: 48,
-    borderRadius: 8,
+    borderRadius: 10,
     backgroundColor: '#3b5bff',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
   },
   buttonPressed: {
-    opacity: 0.8,
+    opacity: 0.85,
   },
   buttonDisabled: {
-    backgroundColor: '#1e293b',
+    backgroundColor: '#94a3b8',
   },
   buttonContent: {
     flexDirection: 'row',
@@ -237,7 +242,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   devHint: {
-    color: '#64748b',
+    color: '#94a3b8',
     fontSize: 12,
     textAlign: 'center',
     marginTop: 24,
