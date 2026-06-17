@@ -36,7 +36,10 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
 
         Notifications.setNotificationHandler({
           handleNotification: async () => ({
-            shouldShowAlert: true,
+            // SDK 53+: shouldShowAlert is deprecated; foreground display is driven
+            // by shouldShowBanner / shouldShowList.
+            shouldShowBanner: true,
+            shouldShowList: true,
             shouldPlaySound: true,
             shouldSetBadge: true,
           }),
@@ -148,7 +151,18 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "machine_states" },
         (payload) => {
-          store.applyMachineState(payload.new as MachineStateRow);
+          const prevState = useMachineStore.getState().state;
+          const row = payload.new as MachineStateRow;
+          store.applyMachineState(row);
+
+          // Fire once on the transition INTO emergency. machine_states INSERTs also
+          // carry routine cadence updates, so guard against re-notifying.
+          if (prevState !== "emergency" && row.state === "emergency") {
+            scheduleLocalRef.current?.(
+              "🚨 URGENCE",
+              "Arrêt d'urgence détecté sur la ligne EE233.",
+            );
+          }
         },
       )
       .on(
@@ -157,6 +171,7 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
         (payload) => {
           if (payload.eventType === "DELETE") return;
           const stop = payload.new as StopEventRow;
+          const prevStop = useMachineStore.getState().activeStop;
           store.applyStopEvent(stop);
 
           // Show native local notification if machine stops and app is active
@@ -164,6 +179,21 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
             scheduleLocalRef.current?.(
               "🛑 Machine Arrêtée",
               `La ligne de conditionnement EE233 s'est arrêtée.`,
+            );
+          }
+
+          // Breakdown cause logged (operator sets it via UPDATE in the kiosk) →
+          // alert maintenance. Fire once on the transition INTO "panne".
+          const prevCause =
+            prevStop?.id === stop.id ? prevStop.cause_category : null;
+          if (
+            stop.ts_end === null &&
+            stop.cause_category === "panne" &&
+            prevCause !== "panne"
+          ) {
+            scheduleLocalRef.current?.(
+              "🔧 PANNE",
+              `Panne déclarée sur EE233${stop.cause_label ? ` : ${stop.cause_label}` : ""}.`,
             );
           }
         },
